@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin/Release/net8.0/publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/added7b6-5d13-4210-ae8c-3a604c19aa15/resourceGroups/mcrm/providers/Microsoft.Web/sites/McrmApi"
+}
