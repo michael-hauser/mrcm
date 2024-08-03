@@ -1,0 +1,6 @@
+@MrcmApi_HostAddress = http://localhost:5081
+
+GET {{MrcmApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
