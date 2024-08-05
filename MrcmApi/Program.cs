@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 
 // Configure database connection
 builder.Services.AddDbContext<McrmContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
 
 // Read allowed origins from appsettings.json
 var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();

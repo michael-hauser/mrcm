@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MrcmApi.Migrations
 {
     [DbContext(typeof(McrmContext))]
-    [Migration("20240803165228_RemoveCustomerId1Column")]
-    partial class RemoveCustomerId1Column
+    [Migration("20240805171112_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,7 +107,7 @@ namespace MrcmApi.Migrations
                     b.Property<int>("InteractionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("UserId", "InteractionId");
@@ -120,7 +120,7 @@ namespace MrcmApi.Migrations
             modelBuilder.Entity("Interaction", b =>
                 {
                     b.HasOne("Customer", "Customer")
-                        .WithMany("Interactions")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -137,7 +137,7 @@ namespace MrcmApi.Migrations
                         .IsRequired();
 
                     b.HasOne("User", "User")
-                        .WithMany("UserInteractions")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -147,17 +147,7 @@ namespace MrcmApi.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Customer", b =>
-                {
-                    b.Navigation("Interactions");
-                });
-
             modelBuilder.Entity("Interaction", b =>
-                {
-                    b.Navigation("UserInteractions");
-                });
-
-            modelBuilder.Entity("User", b =>
                 {
                     b.Navigation("UserInteractions");
                 });
