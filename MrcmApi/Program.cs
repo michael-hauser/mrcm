@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,7 +22,7 @@ if (string.IsNullOrEmpty(allowedOrigin))
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowConfiguredOrigins",
-        corsBuilder => corsBuilder
+        builder => builder
             .WithOrigins(allowedOrigin)
             .AllowAnyMethod()
             .AllowAnyHeader());
