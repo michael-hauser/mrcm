@@ -54,5 +54,5 @@ jobs:
         with:
           app-name: 'McrmBackend'
           slot-name: 'Production'
-          package: ${{env.DOTNET_ROOT}}/myapp
+          package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CDB4C403FA724157B3191EACC7C971C6 }}
