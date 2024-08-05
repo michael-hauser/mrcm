@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,14 +9,19 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<McrmContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
 
-// Read allowed origins from appsettings.json
-var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
+// Read allowed origin from appsettings.json
+var allowedOrigin = builder.Configuration["AllowedOrigin"];
+
+if (string.IsNullOrEmpty(allowedOrigin))
+{
+    throw new InvalidOperationException("AllowedOrigin is not configured correctly.");
+}
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowConfiguredOrigins",
-        builder => builder
-            .WithOrigins(allowedOrigins)
+        corsBuilder => corsBuilder
+            .WithOrigins(allowedOrigin)
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
